@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.Estudante" table="estudante">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="proa.model.Pessoa" fetch="select" name="pessoa">
+      <column length="14" name="cpf"/>
+    </many-to-one>
+    <many-to-one class="proa.model.Curso" fetch="select" name="curso">
+      <column name="idCurso"/>
+    </many-to-one>
+    <property name="matricula" type="string">
+      <column length="12" name="matricula" unique="true"/>
+    </property>
+    <property name="periodo" type="java.lang.Short">
+      <column name="periodo"/>
+    </property>
+    <property name="situacao" type="string">
+      <column length="8" name="situacao">
+        <comment>ATIVO REPERIODIZADO TRANCADO FORMADO EVASAO</comment>
+      </column>
+    </property>
+    <property name="tipoVestibular" type="string">
+      <column length="20" name="tipoVestibular">
+        <comment>VESTIBULAR PROVAR I PROVAR II PROVAR III PROVAR IV PROVAR V VESTIBULAR INDIGENA</comment>
+      </column>
+    </property>
+    <property name="notaVestibular" type="java.lang.Integer">
+      <column name="notaVestibular"/>
+    </property>
+    <property name="dataIngresso" type="date">
+      <column length="10" name="dataIngresso"/>
+    </property>
+    <property name="dataEgresso" type="date">
+      <column length="10" name="dataEgresso"/>
+    </property>
+    <property name="observacao" type="string">
+      <column length="60" name="observacao"/>
+    </property>
+  </class>
+</hibernate-mapping>

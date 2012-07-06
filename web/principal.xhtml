@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <body style="background-image: url(img/img.jpg);" >
+
+        <f:view contentType="text/html">
+            <h:form>
+                <ui:composition template="template.xhtml">
+
+                    <ui:define name="cima">
+
+                        <p:growl id="messages"/>
+
+                        <p:panel style="background-image: url(img/logo.png);height: 110px; background-repeat: no-repeat; background-position: center; border: none">
+
+                        </p:panel>
+
+                        <p:menubar style="background-color: lavender">
+                            <p:submenu label="PROTOCOLO" icon="ui-icon-document">
+                                <p:menuitem value="Cadastrar" action="#{protocoloController.cadastroProtocolo(proaController)}" ajax="false" /> />
+                                <p:separator />
+                                <p:menuitem value="Sair" url="#" />
+                            </p:submenu>
+
+                            <p:submenu label="ATENDIMENTO" icon="ui-icon-pencil">
+                                <p:menuitem value="Solicitar" action="#{atendimentoController.tempSolicitAtencimento(principalController)}" ajax="false" />
+                                <p:menuitem value="Consultar" url="#" />
+                            </p:submenu>
+                        
+                        <p:submenu label="TRIAGEM" icon="ui-icon-pencil">
+                            <p:menuitem value="Triagem" action="#{protocoloController.triagemProtocolo(principalController)}" ajax="false" />
+
+                        </p:submenu>
+                        </p:menubar>
+
+                    </ui:define>
+
+                    <ui:define name="centro">
+
+                        <ui:include src="#{proaController.paginaPrincipal}"/>
+
+                    </ui:define>
+
+                </ui:composition>
+            </h:form>
+        </f:view>
+
+    </body>
+
+</html>
+

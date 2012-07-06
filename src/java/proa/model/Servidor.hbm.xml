@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.Servidor" table="servidor">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="proa.model.Pessoa" fetch="join" name="pessoa" lazy="false">
+      <column length="14" name="cpf" unique="true"/>
+    </many-to-one>
+    <property name="siape" type="string">
+      <column length="15" name="siape"/>
+    </property>
+    <property name="siad" type="string">
+      <column length="6" name="siad"/>
+    </property>
+    <property name="tipo" type="string">
+      <column length="7" name="tipo">
+        <comment>TECNICO DOCENTE</comment>
+      </column>
+    </property>
+    <property name="nivelGraduacao" type="string">
+      <column length="20" name="nivelGraduacao">
+        <comment>ENSINO MEDIO ENSINO MEDIO TECNICO GRADUACAO ESPECIALIZACAO MESTRADO DOUTORADO POS-DOUTORADO</comment>
+      </column>
+    </property>
+    <property name="ramal" type="string">
+      <column length="4" name="ramal"/>
+    </property>
+    <property name="lotacao" type="string">
+      <column length="25" name="lotacao">
+        <comment>UFPR LITORAL PALOTINA</comment>
+      </column>
+    </property>
+    <property name="setor" type="string">
+      <column length="15" name="setor">
+        <comment>ACADEMICO PEDAGOGICO GTI PROA SECRETARIA ALMOXARIFADO RH ADMINISTRACAO DIRECAO M</comment>
+      </column>
+    </property>
+    <property name="graduacao" type="string">
+      <column length="35" name="graduacao"/>
+    </property>
+    <property name="especializacao" type="string">
+      <column length="35" name="especializacao"/>
+    </property>
+    <property name="mestrado" type="string">
+      <column length="35" name="mestrado"/>
+    </property>
+    <property name="doutorado" type="string">
+      <column length="35" name="doutorado"/>
+    </property>
+    <property name="situacao" type="string">
+      <column length="7" name="situacao">
+        <comment>ATIVO INATIVO LICENCA FERIAS</comment>
+      </column>
+    </property>
+    <property name="cargo" type="string">
+      <column length="45" name="cargo"/>
+    </property>
+    <set inverse="true" name="protocolos">
+      <key>
+        <column name="atendenteResp"/>
+      </key>
+      <one-to-many class="proa.model.Protocolo"/>
+    </set>
+    <set inverse="true" name="atendimentos">
+      <key>
+        <column name="idServidor"/>
+      </key>
+      <one-to-many class="proa.model.Atendimento"/>
+    </set>
+    <set inverse="true" name="tecnicoadministrativos">
+      <key>
+        <column name="idServidor"/>
+      </key>
+      <one-to-many class="proa.model.Tecnicoadministrativo"/>
+    </set>
+    <set inverse="true" name="protocoloServidors">
+      <key>
+        <column name="idServidor"/>
+      </key>
+      <one-to-many class="proa.model.ProtocoloServidor"/>
+    </set>
+    <set inverse="true" name="professors">
+      <key>
+        <column name="idServidor"/>
+      </key>
+      <one-to-many class="proa.model.Professor"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://200.17.236.249:3306/zelda</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">6T!_$uFpR</property>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+    <property name="hibernate.c3p0.acquire_increment">1</property>
+    <property name="hibernate.c3p0.idle_test_period">200</property>
+    <property name="hibernate.c3p0.min_size">1</property>
+    <property name="hibernate.c3p0.max_size">1000</property>
+    <property name="hibernate.c3p0.max_statements">20</property>
+    <property name="hibernate.c3p0.timeout">0</property>
+    <property name="hibernate.c3p0.acquireRetryAttempts">1</property>
+    <property name="hibernate.c3p0.acquireRetryDelay">250</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+    <property name="hibernate.connection.autocommit">true</property>
+   
+    
+    <mapping resource="proa/model/ProtocoloServidor.hbm.xml"/>
+    <mapping resource="proa/model/Login.hbm.xml"/>
+    <mapping resource="proa/model/Grupos.hbm.xml"/>
+    <mapping resource="proa/model/Endereco.hbm.xml"/>
+    <mapping resource="proa/model/Protocolo.hbm.xml"/>
+    <mapping resource="proa/model/Tecnicoadministrativo.hbm.xml"/>
+    <mapping resource="proa/model/Estudante.hbm.xml"/>
+    <mapping resource="proa/model/Atendimento.hbm.xml"/>
+    <mapping resource="proa/model/Pessoa.hbm.xml"/>
+    <mapping resource="proa/model/Professor.hbm.xml"/>
+    <mapping resource="proa/model/Curso.hbm.xml"/>
+    <mapping resource="proa/model/Servidor.hbm.xml"/>
+    <mapping resource="proa/model/LoginGrupo.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

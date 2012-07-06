@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.LoginGrupo" table="login_grupo">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="proa.model.Login" fetch="select"  name="login">
+      <column name="idLogin"/>
+    </many-to-one>
+    <many-to-one class="proa.model.Grupos" fetch="join" lazy="false" name="grupos">
+      <column name="idGrupo"/>
+    </many-to-one>
+    <property name="privilegio" type="string">
+      <column length="13" name="privilegio"/>
+    </property>
+  </class>
+</hibernate-mapping>

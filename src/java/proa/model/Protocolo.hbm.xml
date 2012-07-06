@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.Protocolo" table="protocolo">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="proa.model.Servidor" fetch="select" name="servidor">
+      <column name="atendenteResp"/>
+    </many-to-one>
+    <many-to-one class="proa.model.Pessoa" fetch="select" name="pessoaByCpfPaciente">
+      <column length="14" name="cpfPaciente" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="proa.model.Pessoa" fetch="select" name="pessoaByCpfSolicitante">
+      <column length="14" name="cpfSolicitante"/>
+    </many-to-one>
+    <property name="protocolo" type="string">
+      <column length="11" name="protocolo" not-null="true"/>
+    </property>
+    <property name="pacienteCiente" type="string">
+      <column length="3" name="pacienteCiente">
+        <comment>SIM NAO</comment>
+      </column>
+    </property>
+    <property name="relatoCamara" type="string">
+      <column length="100" name="relatoCamara">
+        <comment>identifica a camara a qual foi relatado</comment>
+      </column>
+    </property>
+    <property name="relatoInstitucional" type="string">
+      <column length="100" name="relatoInstitucional">
+        <comment>identifica quais sao os setores envolvidos</comment>
+      </column>
+    </property>
+    <property name="descricao" type="string">
+      <column length="200" name="descricao"/>
+    </property>
+    <property name="dataInicioAtendimento" type="timestamp">
+      <column length="19" name="dataInicioAtendimento">
+        <comment>Injetar quando o primeiro agendamento ocorrer</comment>
+      </column>
+    </property>
+    <property name="dataFimAtendimento" type="timestamp">
+      <column length="19" name="dataFimAtendimento"/>
+    </property>
+    <property name="dataCriacao" type="timestamp">
+      <column length="19" name="dataCriacao"/>
+    </property>
+    <property name="setorEncaminhamento" type="string">
+      <column length="45" name="setorEncaminhamento">
+        <comment>PROPRIA PESSOA GTI DOCENTE ACADEMICO ESTUDANTE DIRECAO TERCEIRIZADO FISIOTERAPIA GESTAO AMBIENTAL GESTAO E EMPREENDEDORISMO SERVICO SOCIAL AGROECOLOGIA
+                ARTES CIENCIAS GESTAO PUBLICA GESTAO DE TURISMO GESTAO DESPORTIVA E DO LAZER GESTAO IMOBILIARIA INFORMATICA E CIDADANIA LINGUAGEM E COMUNICACAO SAUDE COLETIVA
+                ORIENTACAO COMUNITARIA ESPECIALIZACAO</comment>
+      </column>
+    </property>
+    <property name="situacao" type="string">
+      <column length="45" name="situacao">
+        <comment>PENDENTE ENCAMINHADO EM ATENDIMENTO (QUANDO O PRIMEIRO ATENDE) aproveita e a data de inicio de atendimento FECHADO</comment>
+      </column>
+    </property>
+    <set inverse="true" name="atendimentos">
+      <key>
+        <column name="idProtocolo"/>
+      </key>
+      <one-to-many class="proa.model.Atendimento"/>
+    </set>
+    <set inverse="true" name="protocoloServidors">
+      <key>
+        <column name="idProtocolo"/>
+      </key>
+      <one-to-many class="proa.model.ProtocoloServidor"/>
+    </set>
+  </class>
+</hibernate-mapping>

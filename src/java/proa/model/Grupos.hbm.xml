@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.Grupos" table="grupos">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="descricao" type="string">
+      <column length="45" name="descricao"/>
+    </property>
+    <set inverse="true" name="loginGrupos">
+      <key>
+        <column name="idGrupo"/>
+      </key>
+      <one-to-many class="proa.model.LoginGrupo"/>
+    </set>
+  </class>
+</hibernate-mapping>

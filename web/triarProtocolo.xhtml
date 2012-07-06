@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view contentType="text/html">
+
+        <h:form id="form" acceptcharset="iso-8859-1">
+
+            <p:growl />
+            <p:poll interval="8" update="triar" />
+
+            <p:panel id="triar" toggleable="true" style="background:  bottom;font-size: small" header="TRIAGEM DE PROTOCOLO"  >
+                <p:contextMenu for="tabela" style="font-size: 13px" >
+                    <p:menuitem value="Encaminhar" icon="ui-icon-refresh" oncomplete="osDialog.show()" update="display" process="tabela" />
+                    <p:menuitem value="Excluir" icon="ui-icon-trash" oncomplete="osConfirm.show()" update="display1" rendered="false"/>
+                </p:contextMenu>
+
+
+                <p:dataTable var="protocolo" value="#{protocoloController.listaProtocolos}" id="tabela" paginator="true" rows="10"
+                             editable="true" selectionMode="single">
+
+                    <p:column style="width:16px">
+                        <p:rowToggler />
+                    </p:column>
+
+                    <p:column headerText="DATA CRIACAO" style="width: 20px;text-align: center" >
+                        <h:outputText value="#{protocolo.dataCriacao}" />
+                    </p:column>
+
+                    <p:column headerText="Protocolo" style="width: 20px;text-align: center">
+
+                        <h:outputText value="#{protocolo.protocolo}" >
+                            <f:convertDateTime timeZone="America/Sao_Paulo" pattern="dd/MM/yyyy HH:mm:ss"  type="date" locale="br"/>
+                        </h:outputText >
+                    </p:column>
+
+                    <p:column headerText="Nome" style="width: 300px">
+                        <h:outputText value="#{protocolo.pessoaByCpfPaciente.nome}"  />
+                    </p:column>
+
+                    <p:column headerText="Vínculo" >
+                        <h:outputText value="#{protocolo.pessoaByCpfPaciente.vinculoInstituicao}" />
+                    </p:column>
+
+                    <p:column headerText="Encaminhamento">
+                        <h:outputText value="#{protocolo.setorEncaminhamento}" />
+                    </p:column>
+
+                    <p:column headerText="Responsável Atendimento">
+                        <h:outputText value="#{protocolo.servidor}" />
+                    </p:column>
+
+                    <p:column headerText="Situação">
+                        <h:outputText value="#{protocolo1.situacao}" />
+                    </p:column>
+
+                    <p:rowExpansion>
+
+                        <h:panelGrid columns="2" cellpadding="8" cellspacing="8" >
+                            <h:outputText value="Informações Complementares:" style="font-weight: bolder;font-size: 14px"/>
+                            <h:outputText value="#{protocolo1.descricao}" style="font-size: 14px"/>
+                            <h:outputText value="Houve relato na Câmara?" style="font-weight: bolder;font-size: 14px"/>
+                            <h:outputText value="#{protocolo1.relatoCamara}" style="font-size: 14px"/>
+                            <h:outputText value="Houve relato em Outra Instância Institucional?" style="font-weight: bolder;font-size: 14px"/>
+                            <h:outputText value="#{protocolo1.relatoInstitucional}" style="font-size: 14px"/>
+                        </h:panelGrid>
+
+
+                    </p:rowExpansion>
+
+
+                </p:dataTable>
+
+            </p:panel>
+
+            <!-- ******************************************* DIALOG SERVIDORES ATENDENTES ************************************** -->
+
+
+
+            <p:dialog header="Encaminhar atendente" widgetVar="osDialog" resizable="false" showEffect="fold" hideEffect="explode">
+                <h:panelGrid id="display" columns="4">
+                    <h:outputText value="Encaminhar atendente: " />
+                    <p:selectOneRadio id="options" value="#{protocolo}">
+                        <f:selectItem itemLabel="Haxley" itemValue="1" />
+                        <f:selectItem itemLabel="Paulo" itemValue="2" />  
+                        <f:selectItem itemLabel="Rulian" itemValue="3" />
+                    </p:selectOneRadio>
+
+                </h:panelGrid>
+            </p:dialog>
+
+
+        </h:form>
+
+    </f:view>
+
+</html>
+
+

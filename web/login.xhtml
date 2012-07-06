@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:head>
+        <title>Login PROA</title>
+    </h:head>
+
+    <h:body>
+
+        <center>
+
+            <h:form>
+
+                <p:growl/>
+
+                <p:panel style="background-image: url(img/logo.png);height: 110px; background-repeat: no-repeat; background-position: center; border: none">
+
+                </p:panel>
+
+                <p:panel style="width: 300px; border-width: thick" >
+
+                    <h1><h:outputText id="bemVindo" value="Bem vindo ao PROA" style="color: darkblue"/></h1>
+
+                    <h:panelGrid id="gridLoginSenha" columns="2">
+                        <h:outputText id="loginLabel" value="CPF:" style="font-size: larger; font-weight: bold"/>
+                        <p:inputMask autocomplete="off" mask="999.999.999-99" value="#{loginController.cpfLogin}"/>
+
+                        <h:outputText id="senhaLabel" value="SENHA:" style="font-size: larger; font-weight: bold"/>
+                        <p:password autocomplete="off" id="senha" value="#{loginController.senha}" promptLabel="Digite sua senha" weakLabel="Fraco" goodLabel="Bom" strongLabel="Forte"/>
+                    </h:panelGrid>
+
+                    <br><p:commandButton ajax="false" id="botao" value="ENTRAR" action="#{loginController.efetuarLogin}"/></br>
+
+                </p:panel>
+
+            </h:form>
+
+        </center>
+
+    </h:body>
+
+</html>
+

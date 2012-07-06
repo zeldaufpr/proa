@@ -1,0 +1,238 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <h:body style="background-color: lavender">
+
+        <h:form acceptcharset="iso-8859-1">
+
+            <p:panel toggleable="true" style="background:  bottom;font-size: small" header="CADASTRO DE PROTOCOLO DE ATENDIMENTO"  >
+
+                <p:tabView effect="slide" effectDuration="normal" >
+                    <p:tab title="SOLICITANTE" titleStyle="font-weight: bold; font-size: medium; color: midnightblue">
+                        <center>
+                            <h:outputText value="CPF :"  style="font-weight: bold; font-size: large; color: midnightblue;background-color: inherit"/>
+                            <p:inputMask value="#{protocoloController.proto.pessoaByCpfPaciente.cpf}" mask="999.999.999-99"
+                                         size="12" required="true" requiredMessage="DIGITE O CPF PARA PESQUISA" style="font-weight: bold; font-size: large; color: black" >
+                                <p:ajax event="change" listener="#{protocoloController.buscaPorCpfPaciente}" update="paciente, paciente2, paciente3"  />
+                            </p:inputMask>
+                        </center>
+
+                        <p:panel id="pessoal" header="PESSOAL" style="background:lavender;font-size: small;font-weight: bold">
+                            <h:panelGrid id="paciente" columns="6" styleClass="grid" cellspacing="9" style="background: lavender">
+                                <h:outputText value="NOME:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="55" value="#{protocoloController.proto.pessoaByCpfPaciente.nome}" style="font-weight: bold; font-size: large; color: black" />
+                                <h:outputText value="SEXO" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="1" value="#{protocoloController.proto.pessoaByCpfPaciente.sexo}" style="font-weight: bold; font-size: large; color: black"/>
+                                <h:outputText value="DATA NASCIMENTO" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="8" value="#{protocoloController.proto.pessoaByCpfPaciente.dataNascimento}" style="font-weight: bold; font-size: large; color: black">
+                                    <f:convertDateTime timeZone="America/Sao_Paulo" pattern="dd/MM/yyyy" type="date" locale="br"/>
+                                </p:inputText>
+                                <h:outputText value="NACIONALIDADE" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="11" value="#{protocoloController.proto.pessoaByCpfPaciente.nacionalidade}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="ESTADO CIVIL" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="11" value="#{protocoloController.proto.pessoaByCpfPaciente.estadoCivil}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="NECESSIDADE ESPECIAL" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="11" value="#{protocoloController.proto.pessoaByCpfPaciente.necessidadeEspecial}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="VINCULO UFPR:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="13" value="#{protocoloController.proto.pessoaByCpfPaciente.vinculoInstituicao}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+
+                            </h:panelGrid>
+                        </p:panel>
+                        <p:panel id="Endereco" header="ENDERECO" style="background:lavender;font-size: small;font-weight: bold">
+                            <h:panelGrid id="paciente2" columns="6" styleClass="grid" cellspacing="9" style="background: lavender">
+
+
+                                <h:outputText value="RUA:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="50" value="#{protocoloController.proto.pessoaByCpfPaciente.endereco.rua} " style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="BAIRRO:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="30" value="#{protocoloController.proto.pessoaByCpfPaciente.endereco.bairro}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="NUMERO" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="4" value="#{protocoloController.proto.pessoaByCpfPaciente.endereco.numero}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="CIDADE:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="25" value="#{protocoloController.proto.pessoaByCpfPaciente.endereco.cidade}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="ESTADO:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="1" value="#{protocoloController.proto.pessoaByCpfPaciente.endereco.estado}" style="font-weight: bold; font-size: large; color: midnightblue"   />
+
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="Contato" header="CONTATO" style="background:lavender;font-size: small;font-weight: bold">
+                            <h:panelGrid id="paciente3" columns="6" styleClass="grid" cellspacing="9" style="background: lavender">
+                                <h:outputText value="TELEFONE CELULAR:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="10" value="#{protocoloController.proto.pessoaByCpfPaciente.telCel}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                                <h:outputText value="TELEFONE FIXO:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="10" value="#{protocoloController.proto.pessoaByCpfPaciente.telRes}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                                <h:outputText value="EMAIL:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="40" value="#{protocoloController.proto.pessoaByCpfPaciente.email}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="tabResponsavel" title="RESPONSAVEL PELO ENCAMINHAMENTO" titleStyle="font-weight: bold; font-size: medium; color: midnightblue">
+                        <center>
+                            <h:outputText value="CPF :"  style="font-weight: bold; font-size: large; color: midnightblue;background-color: inherit"/>
+                            <p:inputMask value="#{protocoloController.proto.pessoaByCpfSolicitante.cpf}" mask="999.999.999-99"
+                                         size="14" required="true" style="font-weight: bold; font-size: large; color: black" >
+                                <p:ajax event="blur" listener="#{protocoloController.buscaPorCpfSolicitante}" update="paciente4, paciente5, paciente6" />
+                            </p:inputMask>
+                        </center>
+                        <p:panel id="pessoal2" header="PESSOAL" style="background: lavender">
+                            <h:panelGrid id="paciente4" columns="6" styleClass="grid" cellspacing="9" style="background: lavender">
+                                <h:outputText value="NOME:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="55" value="#{protocoloController.proto.pessoaByCpfSolicitante.nome}" style="font-weight: bold; font-size: large; color: black" />
+                                <h:outputText value="SEXO" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="1" value="#{protocoloController.proto.pessoaByCpfSolicitante.sexo}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="DATA NASCIMENTO" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="8" value="#{protocoloController.proto.pessoaByCpfSolicitante.dataNascimento}" style="font-weight: bold; font-size: large; color: midnightblue">
+                                    <f:convertDateTime timeZone="America/Sao_Paulo" pattern="dd/MM/yyyy" type="date" locale="br"/>
+                                </p:inputText>
+                                <h:outputText value="NACIONALIDE" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="12" value="#{protocoloController.proto.pessoaByCpfSolicitante.nacionalidade}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="ESTADO CIVIL" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="11" value="#{protocoloController.proto.pessoaByCpfSolicitante.estadoCivil}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="NECESSIDADE ESPECIAL" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="13" value="#{protocoloController.proto.pessoaByCpfSolicitante.necessidadeEspecial}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:outputText value="VINCULO UFPR:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="13" value="#{protocoloController.proto.pessoaByCpfSolicitante.vinculoInstituicao}" style="font-weight: bold; font-size: large; color: midnightblue"/>
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="endereco2" header="ENDERECO" style="background: lightgrey">
+                            <h:panelGrid id="paciente5" columns="6" styleClass="grid" cellspacing="9" style="background: lightgrey">
+
+
+                                <h:outputText value="RUA:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="50" value="#{protocoloController.proto.pessoaByCpfSolicitante.endereco.rua} " style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="NUMERO" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="4" value="#{protocoloController.proto.pessoaByCpfSolicitante.endereco.numero}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="BAIRRO:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="30" value="#{protocoloController.proto.pessoaByCpfSolicitante.endereco.bairro}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="CIDADE:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="25" value="#{protocoloController.proto.pessoaByCpfSolicitante.endereco.cidade}" style="font-weight: bold; font-size: large; color: black"  />
+                                <h:outputText value="ESTADO:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="1" value="#{protocoloController.proto.pessoaByCpfSolicitante.endereco.estado}" style="font-weight: bold; font-size: large; color: midnightblue"   />
+
+
+                            </h:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="contato2" header="CONTATO" style="background: powderblue">
+                            <h:panelGrid id="paciente6" columns="6" styleClass="grid" cellspacing="9" style="background: powderblue">
+                                <h:outputText value="TELEFONE CELULAR:" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <p:inputText disabled="true" size="10" value="#{protocoloController.proto.pessoaByCpfSolicitante.telCel}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                                <h:outputText value="TELEFONE FIXO:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="10" value="#{protocoloController.proto.pessoaByCpfSolicitante.telRes}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                                <h:outputText value="EMAIL:" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <p:inputText disabled="true" size="40" value="#{protocoloController.proto.pessoaByCpfSolicitante.email}" style="font-weight: bold; font-size: large; color: midnightblue"  />
+                            </h:panelGrid>
+                        </p:panel>
+
+                        <p:panel id="institucional" header="INSTITUCIONAL" style="background: powderblue">
+                            <h:panelGrid id="institucionalG" columns="2" styleClass="grid" cellspacing="9" style="background: powderblue">
+                                <h:outputText value="TIPO DE ENCAMINHAMENTO" style="font-weight: bold; font-size: large; color: midnightblue" />
+                                <h:selectOneMenu style="background-color: lightgrey; color: black" id="tipoEncaminhamento" value="#{protocoloController.proto.setorEncaminhamento}">
+                                    <f:selectItem itemLabel="PROPRIA PESSOA" itemValue="PROPRIA PESSOA" />
+                                    <f:selectItem itemLabel="DOCENTE" itemValue="DOCENTE" />
+                                    <f:selectItem itemLabel="ACADEMICO" itemValue="ACADEMICO" />
+                                    <f:selectItem itemLabel="ESTUDANTE" itemValue="ESTUDANTE" />
+                                    <f:selectItem itemLabel="DIRECAO ADM" itemValue="DIRECAO ADM" />
+                                    <f:selectItem itemLabel="DIRECAO PED" itemValue="DIRECAO PED" />
+                                    <f:selectItem itemLabel="DIRECAO GERAL" itemValue="DIRECAO GERAL" />
+                                    <f:selectItem itemLabel="TERECEIRIZADO" itemValue="TERCEIRIZADO" />
+                                    <f:selectItem itemLabel="PROA" itemValue="PROA" />
+                                    <f:selectItem itemLabel="GTI" itemValue="GTI" />
+                                    <f:selectItem itemLabel="BIBLIOTECA" itemValue="BIBLIOTECA" />
+                                    <f:selectItem itemLabel="ALMOXARIFADO" itemValue="ALMOXARIFADO" />
+                                    <f:selectItem itemLabel="EVENTOS" itemValue="EVENTOS" />
+                                    <f:selectItem itemLabel="ADMINISTRATIVO" itemValue="ADMINISTRATIVO" />
+                                    <f:selectItem itemLabel="AGROECOLOGIA" itemValue="AGROECOLOGIA" />
+                                    <f:selectItem itemLabel="GESTAO AMBIENTAL" itemValue="GESTAO AMBIENTAL" /> 
+                                    <f:selectItem itemLabel="GESTAO E EMPREENDEDORISMO" itemValue="GESTAO E EMPREENDEDORISMO" />
+                                    <f:selectItem itemLabel="SERVICO SOCIAL" itemValue="SERVICO SOCIAL" />
+                                    <f:selectItem itemLabel="ARTES" itemValue="ARTES" />
+                                    <f:selectItem itemLabel="CIENCIAS" itemValue="CIENCIAS" />
+                                    <f:selectItem itemLabel="GESTAO PUBLICA" itemValue="GESTAO PUBLICA" />
+                                    <f:selectItem itemLabel="GESTAO DE TURISMO" itemValue="GESTAO DE TURISMO" />
+                                    <f:selectItem itemLabel="GESTAO IMOBILIARIA" itemValue="GESTAO IMOBILIARIA" />
+                                    <f:selectItem itemLabel="SAUDE COLETIVA" itemValue="SAUDE COLETIVA" />
+                                    <f:selectItem itemLabel="INFORMATICA E CIDADANENTACAO COMUNITARIA" />
+                                    <f:selectItem itemLabel="ESPECIALIZACAO" itemValue="ESPECIALIZACAO" />
+                                    <f:selectItem itemLabel="FISIOTERAPIA" itemValue="FISIOTERAPIA" />
+                                    <f:selectItem itemLabel="ORIENTACAO COMUNITARIA" itemValue="ORIENTACAO COMUNITARIA" />
+                                    <f:selectItem itemLabel="ESPECIALIZACAO" itemValue="ESPECIALIZACAO" />
+
+                                </h:selectOneMenu>
+                                <h:outputText value="PACIENTE CIENTE DO ENCAMINHAMENTO?" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:selectOneMenu style="background-color: lightgrey; color: black" id="cienteEncaminhamento" value="#{protocoloController.proto.pacienteCiente}">
+                                    <f:selectItem itemLabel="SIM" itemValue="SIM" />
+                                    <f:selectItem itemLabel="NAO" itemValue="NAO" />
+                                </h:selectOneMenu>
+                                <h:outputText value="HOUVE RELATO EM OUTRA INSTANCIA?" style="font-weight: bold; font-size: large; color: midnightblue"/>
+                                <h:selectOneMenu id="relatoInstitucional" value="#{protocoloController.proto.relatoInstitucional}">
+                                    <f:selectItem itemLabel="NAO" itemValue="" />
+                                    <f:selectItem itemLabel="ACADEMICO" itemValue="ACADEMICO" />
+                                    <f:selectItem itemLabel="DIRECAO ADM" itemValue="DIRECAO ADM" />
+                                    <f:selectItem itemLabel="DIRECAO PED" itemValue="DIRECAO PED" />
+                                    <f:selectItem itemLabel="DIRECAO GERAL" itemValue="DIRECAO GERAL" />
+                                    <f:selectItem itemLabel="TERECEIRIZADO" itemValue="TERCEIRIZADO" />
+                                    <f:selectItem itemLabel="PROA" itemValue="PROA" />
+                                    <f:selectItem itemLabel="GTI" itemValue="GTI" />
+                                    <f:selectItem itemLabel="BIBLIOTECA" itemValue="BIBLIOTECA" />
+                                    <f:selectItem itemLabel="ALMOXARIFADO" itemValue="ALMOXARIFADO" />
+                                    <f:selectItem itemLabel="EVENTOS" itemValue="EVENTOS" />
+                                    <f:selectItem itemLabel="ADMINISTRATIVO" itemValue="ADMINISTRATIVO" />
+                                    <f:selectItem itemLabel="AGROECOLOGIA" itemValue="AGROECOLOGIA" />
+                                    <f:selectItem itemLabel="GESTAO AMBIENTAL" itemValue="GESTAO AMBIENTAL" />
+                                    <f:selectItem itemLabel="GESTAO E EMPREENDEDORISMO" itemValue="GESTAO E EMPREENDEDORISMO" />
+                                    <f:selectItem itemLabel="SERVICO SOCIAL" itemValue="SERVICO SOCIAL" />
+                                    <f:selectItem itemLabel="ARTES" itemValue="ARTES" />
+                                    <f:selectItem itemLabel="CIENCIAS" itemValue="CIENCIAS" />
+                                    <f:selectItem itemLabel="GESTAO PUBLICA" itemValue="GESTAO PUBLICA" />
+                                    <f:selectItem itemLabel="GESTAO DE TURISMO" itemValue="GESTAO DE TURISMO" />
+                                    <f:selectItem itemLabel="GESTAO IMOBILIARIA" itemValue="GESTAO IMOBILIARIA" />
+                                    <f:selectItem itemLabel="SAUDE COLETIVA" itemValue="SAUDE COLETIVA" />
+                                    <f:selectItem itemLabel="INFORMATICA E CIDADANENTACAO COMUNITARIA" />
+                                    <f:selectItem itemLabel="ESPECIALIZACAO" itemValue="ESPECIALIZACAO" />
+                                    <f:selectItem itemLabel="FISIOTERAPIA" itemValue="FISIOTERAPIA" />
+                                    <f:selectItem itemLabel="ORIENTACAO COMUNITARIA" itemValue="ORIENTACAO COMUNITARIA" />
+                                    <f:selectItem itemLabel="ESPECIALIZACAO" itemValue="ESPECIALIZACAO" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </p:panel>
+
+                    </p:tab>
+
+
+                    <p:tab title="DESCRICAO DO ATENDIMENTO" titleStyle="font-weight: bold; font-size: medium; color: midnightblue">
+                        <p:panel id="descri" header="INFORMAÇÕES COMPLEMENTARES" style="background:lavender;font-size: medium">
+                            <center>
+                                <h:panelGrid columns="1" style="background: lavender"  >
+                                    <h:outputText value="SE POSSÍVEL, FAÇA UM BREVE RELADO DO ASSUNTO A SER TRATADO:" style="font-size: medium ; color: black"/>
+                                    <p:inputTextarea value="#{protocoloController.proto.descricao}" cols="90" autoResize="true"   style= "font-size: medium"/>
+                                </h:panelGrid>
+                            </center>
+                            <h1 align="center">  <p:commandButton value ="ENCAMINHAR" action="#{protocoloController.cadastrarProtocolo}" immediate="false" ajax="false" style=" border-color: blue;font-size: large;background:lightsteelblue;color:midnightblue" /> </h1>
+
+                            
+                        </p:panel>
+                        
+                    </p:tab>
+
+
+                </p:tabView>
+                
+
+
+            </p:panel>
+
+        </h:form>
+
+    </h:body>
+</html>
+

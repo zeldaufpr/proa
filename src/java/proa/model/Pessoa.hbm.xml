@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/06/2012 15:52:48 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+  <class catalog="zelda" name="proa.model.Pessoa" table="pessoa">
+    <id name="cpf" type="string">
+      <column length="14" name="cpf"/>
+      <generator class="assigned"/>
+    </id>
+    <many-to-one class="proa.model.Endereco" fetch="join" lazy="false" name="endereco">
+      <column name="idEndereco"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="60" name="nome"/>
+    </property>
+    <property name="rg" type="string">
+      <column length="15" name="rg"/>
+    </property>
+    <property name="rgData" type="date">
+      <column length="10" name="rgData"/>
+    </property>
+    <property name="rgOrgao" type="string">
+      <column length="2" name="rgOrgao"/>
+    </property>
+    <property name="rgEstado" type="string">
+      <column length="2" name="rgEstado"/>
+    </property>
+    <property name="dataNascimento" type="date">
+      <column length="10" name="dataNascimento"/>
+    </property>
+    <property name="nacionalidade" type="string">
+      <column length="12" name="nacionalidade"/>
+    </property>
+    <property name="cidadeNatal" type="string">
+      <column length="45" name="cidadeNatal"/>
+    </property>
+    <property name="estadoNatal" type="string">
+      <column length="2" name="estadoNatal"/>
+    </property>
+    <property name="estadoCivil" type="string">
+      <column length="12" name="estadoCivil"/>
+    </property>
+    <property name="sexo" type="java.lang.Character">
+      <column length="1" name="sexo"/>
+    </property>
+    <property name="filiacaoPai" type="string">
+      <column length="50" name="filiacaoPai"/>
+    </property>
+    <property name="filiacaoMae" type="string">
+      <column length="50" name="filiacaoMae"/>
+    </property>
+    <property name="email" type="string">
+      <column length="40" name="email"/>
+    </property>
+    <property name="telRes" type="string">
+      <column length="13" name="telRes"/>
+    </property>
+    <property name="telCel" type="string">
+      <column length="13" name="telCel"/>
+    </property>
+    <property name="necessidadeEspecial" type="string">
+      <column length="10" name="necessidadeEspecial"/>
+    </property>
+    <property name="vinculoInstituicao" type="string">
+      <column length="17" name="vinculoInstituicao">
+        <comment>TECNICO DOCENTE ESTUDANTE TECNICO/ESTUDANTE TECNICO/DOCENTE DOCENTE/ESTUDANTE COMUNIDADE TERCEIRIZADO</comment>
+      </column>
+    </property>
+    <property name="observacao" type="string">
+      <column length="150" name="observacao"/>
+    </property>
+    <set inverse="true" name="protocolosForCpfPaciente">
+      <key>
+        <column length="14" name="cpfPaciente" not-null="true"/>
+      </key>
+      <one-to-many class="proa.model.Protocolo"/>
+    </set>
+    <set inverse="true" name="servidors">
+      <key>
+        <column length="14" name="cpf" unique="true"/>
+      </key>
+      <one-to-many class="proa.model.Servidor"/>
+    </set>
+    <set inverse="true" name="estudantes">
+      <key>
+        <column length="14" name="cpf"/>
+      </key>
+      <one-to-many class="proa.model.Estudante"/>
+    </set>
+    <set inverse="true" name="logins">
+      <key>
+        <column length="14" name="cpfPessoa"/>
+      </key>
+      <one-to-many class="proa.model.Login"/>
+    </set>
+    <set inverse="true" name="enderecos">
+      <key>
+        <column length="14" name="cpfPessoa"/>
+      </key>
+      <one-to-many class="proa.model.Endereco"/>
+    </set>
+    <set inverse="true" name="protocolosForCpfSolicitante">
+      <key>
+        <column length="14" name="cpfSolicitante"/>
+      </key>
+      <one-to-many class="proa.model.Protocolo"/>
+    </set>
+  </class>
+</hibernate-mapping>
